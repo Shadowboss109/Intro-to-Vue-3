@@ -31,6 +31,10 @@ app.component('product-display', {
           class="color-circle" 
           :style="{ backgroundColor: variant.color }">
         </div>
+        <button class="button"
+        v-on:click="removeFromCart">
+        Remove from Cart
+        </button>
         
         <button 
           class="button" 
@@ -56,10 +60,15 @@ app.component('product-display', {
   },
   methods: {
       addToCart() {
-          this.cart += 1
+          this.$emit('add-to-cart',this.variants[this.selectedVariant].id)
       },
       updateVariant(index) {
           this.selectedVariant = index
+      },
+      removeFromCart(){
+        this.$emit('remove-from-cart')
+
+
       }
   },
   computed: {
